@@ -7,15 +7,35 @@
 int main(int argc, char **argv) {
   sf::Window window(sf::VideoMode(300, 200), "SFML Essentials");
 
+  sf::String buffer;
+
   // Game loop
   while (window.isOpen()) {
-    /*
-        Game loop stages
+    sf::Event event;
+    while (window.pollEvent(event)) {
+      switch (event.type) {
+        case sf::Event::Closed:
+          window.close();
+          break;
+        case sf::Event::TextEntered:
+          // Add typed characters to the buffer
+          buffer += event.text.unicode;
+          break;
+        case sf::Event::KeyReleased:
+          // Set the window title to the text entered and clear the buffer
+          if (event.key.code == sf::Keyboard::Return) {
+            window.setTitle(buffer);
+            buffer.clear();
+          }
+          break;
+        default:
+          break;
+      }
+    }
 
-        1. Handle input - handle events from input devices and the window
-        2. Update frame - update objects in the scene
-        3. Render frame - render objects from the scene onto the window
-     */
+    // Update frame
+
+    // Render frame
   }
 
   return 0;
