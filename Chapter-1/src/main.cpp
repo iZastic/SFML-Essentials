@@ -7,13 +7,12 @@
 int main(int argc, char **argv) {
   sf::RenderWindow window(sf::VideoMode(640, 480), "SFML Essentials");
 
-  sf::CircleShape circle(50);
-  circle.setFillColor(sf::Color::Red);
-  circle.setOutlineColor(sf::Color::White);
-  circle.setOutlineThickness(3);
-
-  sf::RectangleShape rectangle(sf::Vector2f(50, 50));
-  rectangle.setFillColor(sf::Color::Green);
+  sf::ConvexShape triangle;
+  triangle.setPointCount(3);
+  triangle.setPoint(0, sf::Vector2f(100, 0));
+  triangle.setPoint(1, sf::Vector2f(100, 100));
+  triangle.setPoint(2, sf::Vector2f(0, 100));
+  triangle.setFillColor(sf::Color::Blue);
 
   // Game loop
   while (window.isOpen()) {
@@ -27,8 +26,7 @@ int main(int argc, char **argv) {
 
     window.clear(sf::Color::Black);
 
-    window.draw(circle);
-    window.draw(rectangle);
+    window.draw(triangle);
 
     window.display();
 
