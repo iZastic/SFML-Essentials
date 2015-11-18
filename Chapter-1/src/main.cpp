@@ -2,40 +2,36 @@
 // Created by iZastic on 11/18/2015.
 //
 
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 int main(int argc, char **argv) {
-  sf::Window window(sf::VideoMode(300, 200), "SFML Essentials");
+  sf::RenderWindow window(sf::VideoMode(640, 480), "SFML Essentials");
 
-  sf::String buffer;
+  sf::CircleShape circle(50);
+  circle.setFillColor(sf::Color::Red);
+  circle.setOutlineColor(sf::Color::White);
+  circle.setOutlineThickness(3);
+
+  sf::RectangleShape rectangle(sf::Vector2f(50, 50));
+  rectangle.setFillColor(sf::Color::Green);
 
   // Game loop
   while (window.isOpen()) {
     sf::Event event;
     while (window.pollEvent(event)) {
-      switch (event.type) {
-        case sf::Event::Closed:
-          window.close();
-          break;
-        case sf::Event::TextEntered:
-          // Add typed characters to the buffer
-          buffer += event.text.unicode;
-          break;
-        case sf::Event::KeyReleased:
-          // Set the window title to the text entered and clear the buffer
-          if (event.key.code == sf::Keyboard::Return) {
-            window.setTitle(buffer);
-            buffer.clear();
-          }
-          break;
-        default:
-          break;
-      }
+      if (event.type == sf::Event::Closed)
+        window.close();
     }
 
-    // Update frame
+    // Update scene
 
-    // Render frame
+    window.clear(sf::Color::Black);
+
+    window.draw(circle);
+    window.draw(rectangle);
+
+    window.display();
+
   }
 
   return 0;
