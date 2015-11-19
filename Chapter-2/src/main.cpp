@@ -4,8 +4,6 @@
 
 #include <SFML/Graphics.hpp>
 
-void initShape(sf::RectangleShape &shape, sf::Vector2f const &pos, sf::Color const &color);
-
 int main(int argc, char **argv) {
   sf::RenderWindow window(sf::VideoMode(512, 512), "Drawing images");
   // Set target frames per second
@@ -13,11 +11,9 @@ int main(int argc, char **argv) {
 
   sf::Texture texture;
   texture.loadFromFile("../../res/images/smiley.png");
-  texture.setRepeated(true);
+  texture.setSmooth(true);
 
-  sf::RectangleShape smiley(sf::Vector2f(512, 512));
-  smiley.setTextureRect(sf::IntRect(0, 0, 512, 512));
-  smiley.setTexture(&texture);
+  sf::Sprite smiley(texture);
 
   // Game loop
   while (window.isOpen()) {
@@ -38,10 +34,4 @@ int main(int argc, char **argv) {
   }
 
   return 0;
-}
-
-void initShape(sf::RectangleShape &shape, sf::Vector2f const &pos, sf::Color const &color) {
-  shape.setFillColor(color);
-  shape.setPosition(pos);
-  shape.setOrigin(shape.getSize() * 0.5f);
 }
