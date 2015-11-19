@@ -7,14 +7,16 @@
 void initShape(sf::RectangleShape &shape, sf::Vector2f const &pos, sf::Color const &color);
 
 int main(int argc, char **argv) {
-  sf::RenderWindow window(sf::VideoMode(640, 480), "Drawing images");
+  sf::RenderWindow window(sf::VideoMode(512, 512), "Drawing images");
   // Set target frames per second
   window.setFramerateLimit(60);
 
   sf::Texture texture;
   texture.loadFromFile("../../res/images/smiley.png");
+  texture.setRepeated(true);
 
-  sf::RectangleShape smiley(sf::Vector2f(256, 256));
+  sf::RectangleShape smiley(sf::Vector2f(512, 512));
+  smiley.setTextureRect(sf::IntRect(0, 0, 512, 512));
   smiley.setTexture(&texture);
 
   // Game loop
