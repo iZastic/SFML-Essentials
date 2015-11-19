@@ -6,13 +6,10 @@
 
 int main(int argc, char **argv) {
   sf::RenderWindow window(sf::VideoMode(640, 480), "SFML Essentials");
+  // Set target frames per second
+  window.setFramerateLimit(60);
 
-  sf::ConvexShape triangle;
-  triangle.setPointCount(3);
-  triangle.setPoint(0, sf::Vector2f(100, 0));
-  triangle.setPoint(1, sf::Vector2f(100, 100));
-  triangle.setPoint(2, sf::Vector2f(0, 100));
-  triangle.setFillColor(sf::Color::Blue);
+  sf::RectangleShape rect(sf::Vector2f(50, 50));
 
   // Game loop
   while (window.isOpen()) {
@@ -22,12 +19,13 @@ int main(int argc, char **argv) {
         window.close();
     }
 
-    // Update scene
+    // Update
+    rect.rotate(1.5);
+    rect.move(sf::Vector2f(1, 0));
 
+    // Render
     window.clear(sf::Color::Black);
-
-    window.draw(triangle);
-
+    window.draw(rect);
     window.display();
 
   }
