@@ -3,17 +3,16 @@
 //
 
 #include <SFML/Graphics.hpp>
+#include "AssetManager.hpp"
 
 int main(int argc, char **argv) {
   sf::RenderWindow window(sf::VideoMode(512, 512), "Drawing images");
   // Set target frames per second
   window.setFramerateLimit(60);
 
-  sf::Texture texture;
-  texture.loadFromFile("../../res/images/smiley.png");
-  texture.setSmooth(true);
+  AssetManager manager;
 
-  sf::Sprite smiley(texture);
+  sf::Sprite smiley(AssetManager::getTexture("smiley.png"));
 
   // Game loop
   while (window.isOpen()) {

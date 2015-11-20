@@ -1,7 +1,5 @@
 set(SRCROOT ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-include_directories(${INCROOT})
-
 set(EXECUTABLE_NAME "Chapter-1")
 
 set(FILES_SRC
